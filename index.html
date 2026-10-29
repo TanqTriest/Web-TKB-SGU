@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng ký môn học từ file thời khóa biểu</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar no-print">
+    <div class="brand">
+      <div class="logo">TKB</div>
+      <div>
+        <h1>Đăng ký môn học</h1>
+        <p>Nhập file thời khóa biểu, hệ thống tự đọc dữ liệu</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button type="button" class="btn btn-secondary" id="themeBtn">🌙 Chế độ tối</button>
+      <button type="button" class="btn btn-primary" id="printBtn">In thời khóa biểu</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="card no-print" id="importCard">
+      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Chọn file thời khóa biểu">
+        <input type="file" id="fileInput" accept=".pdf,.xlsx,.xls,.csv,.txt" multiple hidden />
+        <div class="drop-icon">📄</div>
+        <div>
+          <strong>Thả file thời khóa biểu vào đây hoặc bấm để chọn</strong>
+          <p>Hỗ trợ PDF, Excel (.xlsx, .xls) và CSV. Có thể chọn nhiều file cùng lúc.</p>
+        </div>
+      </div>
+      <div id="importStatus" class="import-status" aria-live="polite"></div>
+      <div class="import-summary" id="importSummary"></div>
+    </section>
+
+    <div class="workspace">
+      <section class="card browser no-print">
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab active" role="tab" data-tab="register">Chọn lớp học phần</button>
+          <button type="button" class="tab" role="tab" data-tab="data">Dữ liệu đã đọc</button>
+        </div>
+
+        <div class="toolbar">
+          <input type="text" id="searchInput" placeholder="Tìm mã MH, tên môn, giảng viên, phòng..." />
+          <select id="sortBy" aria-label="Sắp xếp theo">
+            <option value="code">Sắp xếp theo mã MH</option>
+            <option value="name">Sắp xếp theo tên môn</option>
+            <option value="lecturer">Sắp xếp theo giảng viên</option>
+          </select>
+          <select id="sortOrder" aria-label="Thứ tự">
+            <option value="asc">A-Z / 0-9</option>
+            <option value="desc">Z-A / 9-0</option>
+          </select>
+        </div>
+
+        <div id="tabRegister">
+          <div id="courseList" class="course-list"></div>
+        </div>
+
+        <div id="tabData" class="hidden">
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Mã MH</th>
+                  <th>Tên học phần</th>
+                  <th>Họ và tên</th>
+                  <th>Nhóm</th>
+                  <th>Tổ TH</th>
+                  <th>Số SV</th>
+                  <th>Thứ</th>
+                  <th>Tiết BĐ</th>
+                  <th>Số tiết</th>
+                  <th>Phòng</th>
+                </tr>
+              </thead>
+              <tbody id="dataBody"></tbody>
+            </table>
+          </div>
+          <p class="table-note" id="dataNote"></p>
+        </div>
+
+        <div class="browser-foot">
+          <button type="button" class="btn btn-danger btn-sm" id="clearDataBtn">Xóa toàn bộ dữ liệu đã nhập</button>
+        </div>
+      </section>
+
+      <aside class="card selected-card">
+        <div class="section-head">
+          <h2>Lớp đã chọn</h2>
+          <div class="stats" id="stats"></div>
+        </div>
+        <div id="selectedList" class="selected-list"></div>
+        <button type="button" class="btn btn-secondary btn-sm no-print" id="clearSelectedBtn">Bỏ chọn tất cả</button>
+      </aside>
+    </div>
+
+    <section class="card timetable-card">
+      <div class="section-head">
+        <h2>Thời khóa biểu cá nhân</h2>
+        <p class="print-only" id="printDate"></p>
+      </div>
+      <div class="table-wrap">
+        <table id="timetable" class="timetable"></table>
+      </div>
+    </section>
+  </main>
+
+  <div id="toastContainer" class="toast-container no-print"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="parser.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
