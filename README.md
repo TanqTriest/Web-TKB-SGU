@@ -1,4 +1,4 @@
-# Ứng dụng Hỗ trợ Đăng ký Môn học & Quản lý Thời khóa biểu
+# Hỗ trợ Đăng ký Môn học & Quản lý Thời khóa biểu
 
 Ứng dụng web tĩnh (Client-side Web Application) được thiết kế hiện đại, trực quan, hỗ trợ sinh viên Trường Đại học Sài Gòn (SGU) dễ dàng nhập dữ liệu thời khóa biểu từ các file thông báo của trường, duyệt danh sách học phần, lựa chọn nhóm lớp tối ưu, kiểm tra trùng lịch tự động, lập thời khóa biểu cá nhân và in ấn trực tiếp.
 
